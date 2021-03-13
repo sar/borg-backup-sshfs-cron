@@ -1,0 +1,31 @@
+# --------------------------------
+# Playbook: Configure dependencies for host system
+# running python3 borgbackup instance
+# Target: RHEL, CentOS, Fedora, yum package manager
+# Docs: https://github.com/borgbackup/borg/blob/master/docs/installation.rst
+# --------------------------------
+
+- hosts: all
+  remote_user: user
+  become: yes
+
+  tasks:
+    - name: Python3 dependencies required by borgbackup
+      block:
+        - name: Configure packages on host
+          yum:
+            state: present
+            name:
+              - python3
+              - python3-pip
+              - python3-devel
+              - python3-virtualenv
+              - libacl-devel
+              - libacl
+              - openssl-devel
+              - lz4-devel
+              - libzstd-devel
+              - pkgconf
+              - python3-pkgconfig
+
+# ----------------------------------
