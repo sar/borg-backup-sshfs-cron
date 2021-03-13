@@ -6,7 +6,6 @@
 # --------------------------------
 
 - hosts: all
-  remote_user: user
   become: yes
 
   tasks:
